@@ -8,10 +8,16 @@ async function getSalesData() {
 	_count: true	
 	})
 
+	await wait(2000)
+
 	return {
 		amount: (data._sum.pricePaidInCents || 0) / 100,
 		numberOfSales: data._count
 	}
+}
+
+function wait(duration: number) {
+	return new Promise(resolve => setTimeout(resolve, duration))
 }
 
 async function getUserData() {
@@ -28,10 +34,20 @@ async function getUserData() {
 	}
 }
 
+async function getProductData() {
+	const [activeCount, inactiveCount] = await Promise.all([
+		db.product.count({ where: { isAvailableForPurchase: true }}),
+		db.product.count({ where: { isAvailableForPurchase: false }})
+	])
+
+	return { activeCount, inactiveCount }
+}
+
 export default async function AdminDashboard() {
-	const [salesData, userData] = await Promise.all([
+	const [salesData, userData, productData] = await Promise.all([
 		getSalesData(),
-		getUserData()
+		getUserData(),
+		getProductData()
 	])
 
 	return (
@@ -43,9 +59,15 @@ export default async function AdminDashboard() {
 			/>
 
 			<DashboardCard 
-				title="Customer" 
+				title="Customers" 
 				subtitle={`${formatCurrency(userData.averageValuePerUser)} Average Value`} 
 				body={formatNumber(userData.userCount)} 
+			/>
+
+			<DashboardCard 
+				title="Active Products" 
+				subtitle={`${formatNumber(productData.inactiveCount)} Inactive Products`} 
+				body={formatNumber(productData.activeCount)} 
 			/>
 		</div>
 	)
