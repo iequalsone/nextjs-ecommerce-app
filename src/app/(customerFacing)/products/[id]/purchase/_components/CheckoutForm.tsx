@@ -18,7 +18,11 @@ const stripePromise = loadStripe(
 )
 
 export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
-  return <Elements stripe={stripePromise} options={{ clientSecret }}></Elements>
+  return (
+    <Elements stripe={stripePromise} options={{ clientSecret }}>
+      <Form />
+    </Elements>
+  )
 }
 
 function Form() {
