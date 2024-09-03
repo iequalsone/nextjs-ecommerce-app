@@ -1,4 +1,4 @@
-import db from "@/components/db/db"
+import db from "@/db/db"
 import { PageHeader } from "../../../_components/PageHeader"
 import { ProductForm } from "../../_components/ProductForm"
 

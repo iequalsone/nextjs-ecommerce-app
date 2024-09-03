@@ -1,6 +1,6 @@
 "use server"
 
-import db from "@/components/db/db"
+import db from "@/db/db"
 
 export async function userOrderExists(email: string, productId: string) {
   return (

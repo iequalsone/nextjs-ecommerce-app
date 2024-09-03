@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
-import db from "@/components/db/db"
+import db from "@/db/db"
 import { Resend } from "resend"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)

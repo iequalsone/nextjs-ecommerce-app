@@ -1,4 +1,4 @@
-import db from "@/components/db/db"
+import db from "@/db/db"
 import { Button } from "@/components/ui/button"
 import { formatCurrency } from "@/lib/formatters"
 import Image from "next/image"

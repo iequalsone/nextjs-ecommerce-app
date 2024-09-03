@@ -1,4 +1,4 @@
-import db from "@/components/db/db"
+import db from "@/db/db"
 import { NextResponse, NextRequest } from "next/server"
 import fs from "fs/promises"
 

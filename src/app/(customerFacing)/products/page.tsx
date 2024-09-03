@@ -1,4 +1,4 @@
-import db from "@/components/db/db"
+import db from "@/db/db"
 import { ProductCard, ProductCardSkeleton } from "@/components/ProductCard"
 import { cache } from "@/lib/cache"
 import { Suspense } from "react"
